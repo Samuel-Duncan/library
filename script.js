@@ -15,8 +15,9 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-Book.prototype.read = function () {
-
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+  addBookToDisplay();
 };
 
 // Take form data and store in myLibrary
@@ -29,35 +30,35 @@ function addBookToLibrary() {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 
-  hideForm();
+  FORM_CONTAINER.classList.toggle('hide-display');
 }
 
 function addBookToDisplay() {
   BOOK_DISPLAY.innerHTML = '';
-  myLibrary.map((book, index) => {
+  myLibrary.forEach((book, index) => {
     const bookCard = document.createElement('div');
     bookCard.classList.add('card', 'my-5');
     bookCard.innerHTML = `<div class="card-header">${book.title}</div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">${book.author}</li>
         <li class="list-group-item">${book.pages}</li>
-        <li class="list-group-item">
-          <div class="mb-3 form-check mt-4">
-				    <label class="form-check-label" for="read">Read:</label>
-				    <input type="checkbox" class="form-check-input" id="read" 
-            name="read" ${book.read ? 'checked' : ''}>
-			    </div>
-        </li>
+        <li class="list-group-item">${book.read ? 'Read' : 'Not read'}</li>
       </ul>
       <div class="card-footer text-center">
+        <button type="button" class="btn toggle-read-btn" data-index="${index}">${book.read ? 'Mark as not read' : 'Mark as read'}</button>
         <button type="button" class="btn delete-btn" data-index="${index}">Remove</button>
       </div>`;
     BOOK_DISPLAY.appendChild(bookCard);
-    const deleteButton = bookCard.querySelector('[data-index]');
+
+    const toggleReadButton = bookCard.querySelector('.toggle-read-btn');
+    toggleReadButton.addEventListener('click', () => {
+      book.toggleRead();
+    });
+
+    const deleteButton = bookCard.querySelector('.delete-btn');
     deleteButton.addEventListener('click', () => {
+      BOOK_DISPLAY.removeChild(bookCard);
       myLibrary.splice(index, 1);
-      bookCard.innerHTML = '';
-      bookCard.classList.remove('card', 'my-5');
     });
   });
 }
