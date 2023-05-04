@@ -27,12 +27,12 @@ input[type="checkbox"]:checked {
   background-color: var(--buttonColor);
 }
 
-.submit, .new-book-btn {
+.submit, .new-book-btn, .toggle-read-btn {
   color: white;
   background-color: var(--buttonColor);
 }
 
-.submit:hover, .new-book-btn:hover {
+.submit:hover, .new-book-btn:hover, .toggle-read-btn:hover {
   color: var(--backgroundColor);
   background-color: var(--borderColor);
 }
