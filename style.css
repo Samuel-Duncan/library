@@ -1,0 +1,52 @@
+:root {
+  --fontColor: white;
+  --buttonColor: navy;
+  --borderColor: rgb(255, 200, 0);
+  --backgroundColor: black;
+  --alternateBackgroundColor: gray;
+}
+
+.hide-display {
+  display: none;
+}
+
+#form-container {
+  color: var(--fontColor);
+  border: 6px double var(--alternateBackgroundColor);
+  background-color: black;
+}
+
+.form-control:focus {
+  border-color: var(--borderColor);
+  box-shadow: 0 0 0 0.2rem var(--borderColor);
+}
+
+input[type="checkbox"]:checked {
+  border-color: var(--borderColor);
+  box-shadow: 0 0 0 0.2rem var(--borderColor);
+  background-color: var(--buttonColor);
+}
+
+.submit, .new-book-btn {
+  color: white;
+  background-color: var(--buttonColor);
+}
+
+.submit:hover, .new-book-btn:hover {
+  color: var(--backgroundColor);
+  background-color: var(--borderColor);
+}
+
+.cancel, .delete-btn {
+  color: var(--backgroundColor);
+  background-color:var(--borderColor);
+}
+
+.cancel:hover, .delete-btn:hover {
+  color: var(--fontColor);
+  background-color: var(--buttonColor);
+}
+
+.card {
+  width: 18rem;
+}
