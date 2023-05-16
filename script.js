@@ -7,11 +7,13 @@ const INPUTS = FORM.querySelectorAll('input');
 const BOOK_DISPLAY = document.querySelector('.book-display');
 
 // Book constructor
-function Book(title, author, pages, read) {
-  this.title = title,
-  this.author = author,
-  this.pages = pages,
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 Book.prototype.toggleRead = function () {
@@ -66,6 +68,7 @@ FORM.addEventListener('submit', (e) => {
   addBookToDisplay();
 });
 
+// Hide/reset form
 function hideForm() {
   FORM_CONTAINER.classList.toggle('hide-display');
   FORM.reset();
